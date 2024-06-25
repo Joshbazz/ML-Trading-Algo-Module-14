@@ -12,7 +12,8 @@ This report compares the performance of two different machine learning algorithm
 
 ### SVM Model
 
-```              precision    recall  f1-score   support
+```
+              precision    recall  f1-score   support
 
         -1.0       0.43      0.04      0.07      1804
          1.0       0.56      0.96      0.71      2288
@@ -24,7 +25,8 @@ weighted avg       0.50      0.55      0.43      4092
 
 ### Logistic Regression Model
 
-```              precision    recall  f1-score   support
+```
+              precision    recall  f1-score   support
 
         -1.0       0.44      0.33      0.38      1804
          1.0       0.56      0.66      0.61      2288
