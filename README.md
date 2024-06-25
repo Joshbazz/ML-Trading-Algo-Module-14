@@ -4,62 +4,72 @@ In this Challenge, you’ll assume the role of a financial advisor at one of the
 
 The speed of these transactions gave your firm a competitive advantage early on. But, people still need to specifically program these systems, which limits their ability to adapt to new data. You’re thus planning to improve the existing algorithmic trading systems and maintain the firm’s competitive advantage in the market. To do so, you’ll enhance the existing trading signals with machine learning algorithms that can adapt to new data.
 
-## Instructions:
+# Machine Learning Model Comparison
 
-Use the starter code file to complete the steps that the instructions outline. The steps for this Challenge are divided into the following sections:
+This report compares the performance of two different machine learning algorithms, Support Vector Machine (SVM) and Logistic Regression, on a binary classification task. The classification reports for both models are provided below, along with an analysis of their performance.
 
-* Establish a Baseline Performance
+## Classification Reports
 
-* Tune the Baseline Trading Algorithm
+### SVM Model
 
-* Evaluate a New Machine Learning Classifier
+              precision    recall  f1-score   support
 
-* Create an Evaluation Report
+        -1.0       0.43      0.04      0.07      1804
+         1.0       0.56      0.96      0.71      2288
 
-#### Establish a Baseline Performance
+    accuracy                           0.55      4092
+   macro avg       0.49      0.50      0.39      4092
+weighted avg       0.50      0.55      0.43      4092
 
-In this section, you’ll run the provided starter code to establish a baseline performance for the trading algorithm. To do so, complete the following steps.
+### Logistic Regression Model
 
-Open the Jupyter notebook. Restart the kernel, run the provided cells that correspond with the first three steps, and then proceed to step four. 
+              precision    recall  f1-score   support
 
-1. Import the OHLCV dataset into a Pandas DataFrame.
+        -1.0       0.44      0.33      0.38      1804
+         1.0       0.56      0.66      0.61      2288
 
-2. Generate trading signals using short- and long-window SMA values. 
+    accuracy                           0.52      4092
+   macro avg       0.50      0.50      0.49      4092
+weighted avg       0.51      0.52      0.51      4092
 
-3. Split the data into training and testing datasets.
+## Analysis
 
-4. Use the `SVC` classifier model from SKLearn's support vector machine (SVM) learning method to fit the training data and make predictions based on the testing data. Review the predictions.
+### Class -1.0 Performance
+- **SVM Model**:
+  - Precision: 0.43 (43% of the predicted -1.0 labels are correct)
+  - Recall: 0.04 (4% of actual -1.0 labels are correctly identified)
+  - F1-score: 0.07 (harmonic mean of precision and recall, very low indicating poor performance)
+  - Support: 1804 (number of actual -1.0 labels)
+  
+- **Logistic Regression Model**:
+  - Precision: 0.44 (44% of the predicted -1.0 labels are correct)
+  - Recall: 0.33 (33% of actual -1.0 labels are correctly identified)
+  - F1-score: 0.38 (harmonic mean of precision and recall, much better than the first report)
+  - Support: 1804 (number of actual -1.0 labels)
 
-5. Review the classification report associated with the `SVC` model predictions. 
+### Class 1.0 Performance
+- **SVM Model**:
+  - Precision: 0.56 (56% of the predicted 1.0 labels are correct)
+  - Recall: 0.96 (96% of actual 1.0 labels are correctly identified)
+  - F1-score: 0.71 (good balance between precision and recall)
+  - Support: 2288 (number of actual 1.0 labels)
+  
+- **Logistic Regression Model**:
+  - Precision: 0.56 (56% of the predicted 1.0 labels are correct)
+  - Recall: 0.66 (66% of actual 1.0 labels are correctly identified)
+  - F1-score: 0.61 (balance between precision and recall, lower than the first report but more balanced)
+  - Support: 2288 (number of actual 1.0 labels)
 
-6. Create a predictions DataFrame that contains columns for “Predicted” values, “Actual Returns”, and “Strategy Returns”.
+### Overall Performance
+- **SVM Model**:
+  - Accuracy: 0.55 (55% of all labels are correctly classified)
+  - Macro avg (unweighted mean): Precision: 0.49, Recall: 0.50, F1-score: 0.39
+  - Weighted avg (weighted by support): Precision: 0.50, Recall: 0.55, F1-score: 0.43
 
-7. Create a cumulative return plot that shows the actual returns vs. the strategy returns. Save a PNG image of this plot. This will serve as a baseline against which to compare the effects of tuning the trading algorithm.
+- **Logistic Regression Model**:
+  - Accuracy: 0.52 (52% of all labels are correctly classified)
+  - Macro avg (unweighted mean): Precision: 0.50, Recall: 0.50, F1-score: 0.49
+  - Weighted avg (weighted by support): Precision: 0.51, Recall: 0.52, F1-score: 0.51
 
-8. Write your conclusions about the performance of the baseline trading algorithm in the `README.md` file that’s associated with your GitHub repository. Support your findings by using the PNG image that you saved in the previous step.
-
-#### Tune the Baseline Trading Algorithm
-
-In this section, you’ll tune, or adjust, the model’s input features to find the parameters that result in the best trading outcomes. (You’ll choose the best by comparing the cumulative products of the strategy returns.) To do so, complete the following steps:
-
-1. Tune the training algorithm by adjusting the size of the training dataset. To do so, slice your data into different periods. Rerun the notebook with the updated parameters, and record the results in your `README.md` file. Answer the following question: What impact resulted from increasing or decreasing the training window?
-
-> **Hint** To adjust the size of the training dataset, you can use a different `DateOffset` value&mdash;for example, six months. Be aware that changing the size of the training dataset also affects the size of the testing dataset.
-
-2. Tune the trading algorithm by adjusting the SMA input features. Adjust one or both of the windows for the algorithm. Rerun the notebook with the updated parameters, and record the results in your `README.md` file. Answer the following question: What impact resulted from increasing or decreasing either or both of the SMA windows?
-
-3. Choose the set of parameters that best improved the trading algorithm returns. Save a PNG image of the cumulative product of the actual returns vs. the strategy returns, and document your conclusion in your `README.md` file.
-
-#### Evaluate a New Machine Learning Classifier
-
-In this section, you’ll use the original parameters that the starter code provided. But, you’ll apply them to the performance of a second machine learning model. To do so, complete the following steps:
-
-1. Import a new classifier, such as `AdaBoost`, `DecisionTreeClassifier`, or `LogisticRegression`. (For the full list of classifiers, refer to the [Supervised learning page](https://scikit-learn.org/stable/supervised_learning.html) in the scikit-learn documentation.)
-
-2. Using the original training data as the baseline model, fit another model with the new classifier.
-
-3. Backtest the new model to evaluate its performance. Save a PNG image of the cumulative product of the actual returns vs. the strategy returns for this updated trading algorithm, and write your conclusions in your `README.md` file. Answer the following questions: Did this new model perform better or worse than the provided baseline model? Did this new model perform better or worse than your tuned trading algorithm?
-
-#### Create an Evaluation Report
-
-In the previous sections, you updated your `README.md` file with your conclusions. To accomplish this section, you need to add a summary evaluation report at the end of the `README.md` file. For this report, express your final conclusions and analysis. Support your findings by using the PNG images that you created.
+### Conclusion
+The **Logistic Regression model** appears to be objectively better because it provides a more balanced performance across both classes, as indicated by the higher F1-scores for the -1.0 class and higher macro and weighted averages. The SVM model, while having a higher recall for the 1.0 class, performs poorly in identifying the -1.0 class. Therefore, the Logistic Regression model seems more robust and reliable for a classification task where performance across all classes is important.
